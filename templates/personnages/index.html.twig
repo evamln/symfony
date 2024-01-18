@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PersonnagesController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+<a href="{{ path('app_home') }}"> Accueil </a>
+<a href="{{ path('app_saison') }}"> Saison </a>
+<a href="{{ path('app_personnages') }}"> Personnages </a>
+<a href="{{ path('app_pose') }}"> Pose </a>
+<a href="{{ path('app_stand') }}"> Stand </a>
+<a href="{{ path('app_statut') }}"> Statut </a>
+
+{% for personnages in personnages %}
+    <div>
+    <h2> {{personnages.name}}</h1>
+    <img src = {{personnages.image}} width ='300' ></img>
+
+    </div>
+{% endfor %}
+
+</div>
+{% endblock %}
