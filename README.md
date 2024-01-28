@@ -1,6 +1,7 @@
 Installation du projet : 
 
 Pour commencer il faut télécharger XAMPP (https://www.apachefriends.org/fr/download.html) et Composer (https://getcomposer.org/download/). Une fois installé il faut cloner le projet dans : C:\xampp\htdocs (ou est installé le xampp), pour cloner le projet il faut faire cette commande : git clone https://github.com/evamln/symfony.git .
+Une fois fait et dans le projet il faut faire : "composer install" pour installer tous les packages.
 
 Afin de pouvoir accéder à toutes les fonctionnalités il faut supprimer le ';' au ligne présente dans le screen (extension:zip, extension:intl). Le fichier est php.ini qui se trouve dans : C:\xampp\php
 ![Alt text](image.png)
