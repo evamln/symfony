@@ -43,3 +43,7 @@ Last:
     characters: "Last 5 characters"
 
 equal: "equal"
+
+List:
+  of:
+    user: "List of user"

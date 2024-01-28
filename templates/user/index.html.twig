@@ -4,7 +4,7 @@
 
 {% block body %}
 <a href="{{ path('app_user_creation') }}"> {% trans %} Add.your.user {% endtrans %} </a>
-<h1 style="text-align : center">Liste des utilisateurs</h1>
+<h1 style="text-align : center">{% trans %}List.of.user{% endtrans %}</h1>
 {% for user in user %}
 <h3>Email : </h3>
 <text>{{ user.email }}</text>

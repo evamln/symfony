@@ -43,3 +43,7 @@ Last:
     characters: "Les 5 derniers personnages"
 
 equal: "égal"
+
+List:
+  of:
+    user: "Liste des utilisateurs"
