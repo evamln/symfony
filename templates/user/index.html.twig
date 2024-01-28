@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+<a href="{{ path('app_user_creation') }}"> {% trans %} Add.your.user {% endtrans %} </a>
+<h1 style="text-align : center">Liste des utilisateurs</h1>
+{% for user in user %}
+<h3>Email : </h3>
+<text>{{ user.email }}</text>
+<text style="font-weight : bold">Roles :</text>
+{% for roles in user.roles %}
+<text>{{ roles }}</text>
+{% endfor %}
+{% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('app_user_detail', {'id': user.id}) }}">Modifier</a>
+    <a href="{{ path('app_user_supprimer', {'id': user.id}) }}">Supprimer</a>
+{% endif %}
+{% endfor %}
+
+
+{% endblock %}

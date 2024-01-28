@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\PersonnagesEtat;
 use App\Repository\PersonnagesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -21,21 +22,27 @@ class Personnages
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(targetEntity: Stand::class)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Stand $stand = null;
 
     #[ORM\ManyToMany(targetEntity: Saisons::class)]
     private Collection $saisons;
 
     #[ORM\ManyToOne(inversedBy: 'personnages')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Statut $statut = null;
 
+    #[ORM\Column(length: 60, enumType: PersonnagesEtat::class)]
+    private ?PersonnagesEtat $enumType = null;
+
+    #[ORM\OneToMany(mappedBy: 'personnages', targetEntity: Poses::class, cascade: ['persist', 'remove'])]
+    private Collection $Poses;
 
     public function __construct()
     {
         $this->saisons = new ArrayCollection();
-        $this->pose = new ArrayCollection();
+        $this->Poses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -111,6 +118,48 @@ class Personnages
     public function setStatut(?Statut $statut): static
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getEnumType(): ?PersonnagesEtat
+    {
+        return $this->enumType;
+    }
+
+    public function setEnumType(PersonnagesEtat $enumType): static
+    {
+        $this->enumType = $enumType;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Poses>
+     */
+    public function getPoses(): Collection
+    {
+        return $this->Poses;
+    }
+
+    public function addPose(Poses $pose): static
+    {
+        if (!$this->Poses->contains($pose)) {
+            $this->Poses->add($pose);
+            $pose->setPersonnages($this);
+        }
+
+        return $this;
+    }
+
+    public function removePose(Poses $pose): static
+    {
+        if ($this->Poses->removeElement($pose)) {
+            // set the owning side to null (unless already changed)
+            if ($pose->getPersonnages() === $this) {
+                $pose->setPersonnages(null);
+            }
+        }
 
         return $this;
     }

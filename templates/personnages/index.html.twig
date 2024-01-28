@@ -3,26 +3,38 @@
 {% block title %}Hello PersonnagesController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-<a href="{{ path('app_home') }}"> Accueil </a>
-<a href="{{ path('app_saison') }}"> Saison </a>
-<a href="{{ path('app_personnages') }}"> Personnages </a>
-<a href="{{ path('app_pose') }}"> Pose </a>
-<a href="{{ path('app_stand') }}"> Stand </a>
-<a href="{{ path('app_statut') }}"> Statut </a>
+<a href="{{ path('app_personnages_creation') }}"> {% trans %}Add.your.character{% endtrans %}</a>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between" >
 
-{% for personnages in personnages %}
-    <div>
-    <h2> {{personnages.name}}</h1>
-    <img src = {{personnages.image}} width ='300' ></img>
-
-    </div>
-{% endfor %}
-
+    {% for personnage in personnages %}
+        <div style="display: flex; flex-direction: column">
+            <h2> {{personnage.name}}</h2>
+            <img src = {{personnage.image}} width ='200' ></img>
+            {% if personnage.stand != null %}
+                <h3> Stand :</h3>
+                <text> {{personnage.stand.name}}</text>
+            {% endif %}
+            {% if personnage.statut != null %}
+                <h3>Statut :</h3>
+                <text>{{personnage.statut.name}}</text>
+            {% endif %}
+                <h3>{%trans %}Saison {%endtrans%}</h3>
+            {% for saisons in personnage.saisons %}
+                <text>{{saisons.name}}</text>
+            {% endfor %}
+            <h3>Poses : </h3>
+            {% for poses in personnage.Poses %}
+                <text style="width:200px">{{poses.name}}</text><br>
+            {% endfor %}
+            <h3>Etat : </h3>
+            <text>{{personnage.enumType.value}}</text><br>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_personnages_detail', {'id': personnage.id}) }}">Modifier</a>
+                <a href="{{ path('app_personnages_supprimer', {'id': personnage.id}) }}">Supprimer</a>
+            {% endif %}
+        </div>
+    {% endfor %}
 </div>
+
 {% endblock %}

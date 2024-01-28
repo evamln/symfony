@@ -13,7 +13,7 @@ class StatutFixture extends Fixture
     public function load(ObjectManager $manager): void
     {
         $statut = [
-            'Perso Princ', 
+            'Perso Principal', 
             'Allie', 
             'Ennemi'
         ];

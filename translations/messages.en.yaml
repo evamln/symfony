@@ -1,0 +1,45 @@
+Add:
+    your:
+      character: "Add you character"
+      status : "Add your status"
+      pose: "Add your pose"
+      season: "Add your season"
+      stand: "Add your stand"
+      power: "Add your power"
+      strength: "Add your strength"
+      user: "Add your user"
+
+Sign:
+    in: "Sign in"
+
+Register: "Register"
+
+character: "Character"
+status: "Status"
+pose: "Pose"
+season: "Season"
+stand: "Stand"
+power: "Power"
+strength: "Strength"
+user: "User"
+home: "Home"
+
+Logout: "Logout"
+
+You:
+  are: 
+    logged: 
+      in: 
+        as: "You are logged in as"
+
+Number:
+  of:
+    characters:
+      dead:  "Number of dead characters"
+      living: "Number of living characters"
+      unknow: "Number of unknow character"
+
+Last:
+    characters: "Last 5 characters"
+
+equal: "equal"

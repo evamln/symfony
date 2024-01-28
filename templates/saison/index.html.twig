@@ -3,17 +3,18 @@
 {% block title %}Hello SaisonController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-<a href="{{ path('app_home') }}"> Accueil </a>
-<a href="{{ path('app_saison') }}"> Saison </a>
-<a href="{{ path('app_personnages') }}"> Personnages </a>
-<a href="{{ path('app_pose') }}"> Pose </a>
-<a href="{{ path('app_stand') }}"> Stand </a>
-<a href="{{ path('app_statut') }}"> Statut </a>
+<a href="{{ path('app_saison_creation') }}">{% trans %} Add.your.season {% endtrans %}</a>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between" >
+{%for saisons in saisons%}
+<div style="display: flex; flex-direction: column">
+<h1>{{saisons.name}}</h1>
+<img src = {{saisons.image}} width ='300' ></img>
+{% if is_granted('ROLE_ADMIN') %}
+      <a href="{{ path('app_saison_detail', {'id': saisons.id}) }}">Modifier</a>
+      <a href="{{ path('app_saison_supprimer', {'id': saisons.id}) }}">Supprimer</a>
+   {% endif %}
 </div>
+{%endfor%}
+   </div>
 {% endblock %}

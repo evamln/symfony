@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Enum\PersonnagesEtat;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Personnages;
@@ -13,17 +14,17 @@ class PersonnageFixture extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $personnages = [
-            ['Jonathan Joestar', 'https://static.wikia.nocookie.net/jjba/images/3/36/JonathanManga.png/revision/latest?cb=20201221145321&path-prefix=fr', '', 'Perso Princ', ['Phantom Blood']],
-            ['Joseph Joestar','https://static.jojowiki.com/images/thumb/e/e2/latest/20221006235618/Joseph_Joestar_Infobox_Manga.png/400px-Joseph_Joestar_Infobox_Manga.png', 'Hermit Purple', 'Perso Princ', ['Battle Tendancy', 'Stardust Crusaders', 'Diamond is Unbreakable']], 
-            ['Jotaro Kujo', 'https://static.jojowiki.com/images/thumb/6/69/latest/20201130220440/Jotaro_SC_Infobox_Manga.png/400px-Jotaro_SC_Infobox_Manga.png', 'Star Platinium', 'Perso Princ', ['Stardust Crusaders', 'Diamond is Unbreakable', 'Stone Ocean']], 
-            ['Josuke Higashikata', 'https://static.wikia.nocookie.net/les-personnages-de-fiction/images/f/f8/Josuke_Higashikata.png/revision/latest?cb=20190214200256&path-prefix=fr', 'Crazy Diamond', 'Perso Princ', ['Diamond is Unbreakable']], 
-            ['Giorno Giovanna', 'https://p7.hiclipart.com/preview/605/33/220/jojo-s-bizarre-adventure-all-star-battle-giogio-s-bizarre-adventure-jotaro-kujo-josuke-higashikata-giorno-giovanna-manga.jpg', 'Gold Experience', 'Perso Princ', ['Golden Wind']], 
-            ['Jolyne Kujo', 'https://e7.pngegg.com/pngimages/545/1009/png-clipart-jotaro-kujo-josuke-higashikata-jojo-s-bizarre-adventure-all-star-battle-jolyne-cujoh-yoshikage-kira-joseph-joestar-jotaro-kujo-josuke-higashikata-thumbnail.png', 'Stone Free', 'Perso Princ', ['Stone Ocean']], 
-            ['Jonnhy Joestar', 'https://i.pinimg.com/originals/b9/a4/34/b9a434db7fefee96c1417e33e1f7ec88.png', 'Tusk', 'Perso Princ', ['Steel Ball Run']], 
-            ['Gyro Zeppeli', 'https://static.wikia.nocookie.net/vsbattles/images/d/d1/Gyro_Zeppeli_Steel_Ball_Run.png/revision/latest?cb=20210520203522', 'Ball Breaker', 'Allie', ['Steel Ball Run']], 
-            ['Kars', 'https://static.wikia.nocookie.net/villains-fr/images/2/2b/Kars.png/revision/latest?cb=20210128160840&path-prefix=fr', '', 'Ennemi', ['Battle Tendancy']], 
-            ['Dio Brando', 'https://w7.pngwing.com/pngs/37/801/png-transparent-dio-brando-jojo-s-bizarre-adventure-all-star-battle-goku-stardust-crusaders-goku-carnivoran-manga-chicken.png', 'The World', 'Ennemi', ['Phantom Blood', 'Stardust Crusaders', 'Stone Ocean']], 
-            ['Yoshikage Kira', 'https://static.jojowiki.com/images/thumb/c/ce/latest/20210107171552/Yoshikage_Kira_Original_Infobox_Manga.png/400px-Yoshikage_Kira_Original_Infobox_Manga.png', 'Killer Queen', 'Ennemi', ['Diamond is Unbreakable']]
+            ['Jonathan Joestar', 'https://static.jojowiki.com/images/thumb/b/bd/latest/20221006234855/Jonathan_Infobox_Manga.png/1200px-Jonathan_Infobox_Manga.png', '', 'Perso Principal', ['Phantom Blood'], PersonnagesEtat::MORT],
+            ['Joseph Joestar','https://static.jojowiki.com/images/thumb/e/e2/latest/20221006235618/Joseph_Joestar_Infobox_Manga.png/400px-Joseph_Joestar_Infobox_Manga.png', 'Hermit Purple', 'Perso Principal', ['Battle Tendancy', 'Stardust Crusaders', 'Diamond is Unbreakable'],  PersonnagesEtat::INCONNU], 
+            ['Jotaro Kujo', 'https://static.jojowiki.com/images/thumb/6/69/latest/20201130220440/Jotaro_SC_Infobox_Manga.png/400px-Jotaro_SC_Infobox_Manga.png', 'Star Platinium', 'Perso Principal', ['Stardust Crusaders', 'Diamond is Unbreakable', 'Stone Ocean'],  PersonnagesEtat::VIVANT], 
+            ['Josuke Higashikata', 'https://static.wikia.nocookie.net/characterprofile/images/f/f2/Josuke4.png', 'Crazy Diamond', 'Perso Principal', ['Diamond is Unbreakable'],  PersonnagesEtat::VIVANT], 
+            ['Giorno Giovanna', 'https://static.jojowiki.com/images/2/21/latest/20210313222135/Giorno_Giovanna_Infobox_Manga.png', 'Gold Experience', 'Perso Principal', ['Golden Wind'],  PersonnagesEtat::VIVANT], 
+            ['Jolyne Kujo', 'https://static.jojowiki.com/images/2/20/latest/20200923041552/Jolyne_Infobox_Manga.png', 'Stone Free', 'Perso Principal', ['Stone Ocean'], PersonnagesEtat::VIVANT], 
+            ['Jonnhy Joestar', 'https://i.pinimg.com/originals/b9/a4/34/b9a434db7fefee96c1417e33e1f7ec88.png', 'Tusk', 'Perso Principal', ['Steel Ball Run'], PersonnagesEtat::VIVANT], 
+            ['Gyro Zeppeli', 'https://static.wikia.nocookie.net/vsbattles/images/d/d1/Gyro_Zeppeli_Steel_Ball_Run.png', 'Ball Breaker', 'Allie', ['Steel Ball Run'], PersonnagesEtat::MORT], 
+            ['Kars', 'https://static.wikia.nocookie.net/vsbattles/images/2/28/Karsrender.png', '', 'Ennemi', ['Battle Tendancy'], PersonnagesEtat::MORT], 
+            ['Dio Brando', 'https://static.jojowiki.com/images/5/5f/latest/20210529185004/Dio_PB_Infobox_Manga.png', 'The World', 'Ennemi', ['Phantom Blood', 'Stardust Crusaders', 'Stone Ocean'], PersonnagesEtat::MORT], 
+            ['Yoshikage Kira', 'https://static.jojowiki.com/images/thumb/c/ce/latest/20210107171552/Yoshikage_Kira_Original_Infobox_Manga.png/400px-Yoshikage_Kira_Original_Infobox_Manga.png', 'Killer Queen', 'Ennemi', ['Diamond is Unbreakable'], PersonnagesEtat::MORT]
            ];
 
            foreach ($personnages as $key => $allPerso) {
@@ -39,6 +40,7 @@ class PersonnageFixture extends Fixture implements DependentFixtureInterface
             foreach($allPerso[4] as $key => $saisons){
                 $personnage->addSaison($this->getReference(SaisonFixture::SAISON_REFERENCE . $saisons));
             }
+            $personnage->setEnumType($allPerso[5]);
             $manager->persist($personnage);
             $ref = self::PERSONNAGE_REFERENCE . $allPerso[0];
             $this->addReference($ref, $personnage);

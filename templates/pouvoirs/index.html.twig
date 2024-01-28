@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PouvoirsController!{% endblock %}
+
+{% block body %}
+<a href="{{ path('app_pouvoirs_creation') }}">{% trans %} Add.your.power {% endtrans %}</a>
+<div style="display: flex; justify-content: space-between; flex-direction: column">
+{%for pouvoirs in pouvoirs%}
+<text style="font-weight:bold"> Pouvoir : </text>
+<text>{{pouvoirs.name}}</text>
+
+{% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('app_pouvoirs_detail', {'id': pouvoirs.id}) }}">Modifier</a>
+    <a href="{{ path('app_pouvoirs_supprimer', {'id': pouvoirs.id}) }}">Supprimer</a>
+{% endif %}
+
+{%endfor%}
+
+</div>
+{% endblock %}

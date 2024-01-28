@@ -3,7 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\StandRepository;
-use Doctrine\DBAL\Types\Types;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StandRepository::class)]
@@ -17,12 +18,18 @@ class Stand
     #[ORM\Column(length: 100)]
     private ?string $name = null;
 
+    #[ORM\ManyToMany(targetEntity: Pouvoirs::class)]
+    private Collection $Pouvoirs;
 
-    #[ORM\Column(type: Types::ARRAY)]
-    private array $pouvoirs = [];
+    #[ORM\ManyToMany(targetEntity: PointsFort::class)]
+    private Collection $PointsFort;
 
-    #[ORM\Column(type: Types::ARRAY)]
-    private array $pointsFort = [];
+
+    public function __construct()
+    {
+        $this->Pouvoirs = new ArrayCollection();
+        $this->PointsFort = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -41,27 +48,52 @@ class Stand
         return $this;
     }
 
-    public function getPouvoirs(): array
+    /**
+     * @return Collection<int, Pouvoirs>
+     */
+    public function getPouvoirs(): Collection
     {
-        return $this->pouvoirs;
+        return $this->Pouvoirs;
     }
 
-    public function setPouvoirs(array $pouvoirs): static
+    public function addPouvoir(Pouvoirs $pouvoir): static
     {
-        $this->pouvoirs = $pouvoirs;
+        if (!$this->Pouvoirs->contains($pouvoir)) {
+            $this->Pouvoirs->add($pouvoir);
+        }
 
         return $this;
     }
 
-    public function getPointsFort(): array
+    public function removePouvoir(Pouvoirs $pouvoir): static
     {
-        return $this->pointsFort;
-    }
-
-    public function setPointsFort(array $pointsFort): static
-    {
-        $this->pointsFort = $pointsFort;
+        $this->Pouvoirs->removeElement($pouvoir);
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, PointsFort>
+     */
+    public function getPointsFort(): Collection
+    {
+        return $this->PointsFort;
+    }
+
+    public function addPointsFort(PointsFort $pointsFort): static
+    {
+        if (!$this->PointsFort->contains($pointsFort)) {
+            $this->PointsFort->add($pointsFort);
+        }
+
+        return $this;
+    }
+
+    public function removePointsFort(PointsFort $pointsFort): static
+    {
+        $this->PointsFort->removeElement($pointsFort);
+
+        return $this;
+    }
+
 }

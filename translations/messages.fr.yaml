@@ -1,0 +1,45 @@
+Add:
+    your:
+      character: "Cree ton personnage"
+      status : "Crée ton statut"
+      pose: "Crée ta pose"
+      season: "Crée ta saison"
+      stand: "Crée ton stand"
+      power: "Crée ton pouvoir"
+      strength: "Crée ton point fort"
+      user: "Crée ton utilisateur"
+
+Sign:
+    in: "Se connecter"
+
+Register: "S'inscrire"
+
+character: "Personnage"
+status: "Statut"
+pose: "Pose"
+season: "Saison"
+stand: "Stand"
+power: "Pouvoirs"
+strength: "Point fort"
+user: "Utilisateur"
+home: "Accueil"
+
+Logout: "Se déconnecter"
+
+You:
+  are: 
+    logged: 
+      in: 
+        as: "Tu es connecté en tant que"
+
+Number:
+  of:
+    characters:
+      dead:  "Nombre de personnages morts"
+      living: "Nombre de personnages vivants"
+      unknow: "Nombre de personnages inconnus"
+
+Last:
+    characters: "Les 5 derniers personnages"
+
+equal: "égal"

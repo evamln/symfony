@@ -14,17 +14,17 @@ class PosesFixture extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $poses = [
-            [['Adam 1880-1881', 'Studies of Teri Toye Body Conscious New York, 1963'], 'Jonathan Joestar'], 
-            [['The Picasso of Fashion Illustration', 'California Dreamer Paris 1986'], 'Kars'],
-            [['TBA 1980', 'Yves Saint Laurent Haute Couture Paris, 1984'], 'Joseph Joestar'],
-            [['Dirty Harry', 'Vogue US January 2000',], 'Jotaro Kujo'],
-            [['Gianni Versace Fall/Winter 1984', 'Gianni Versace Men Without Ties TBA 1994'], 'Josuke Higashikata'],
-            [['Gianni Versace Spring/Summer 1997', 'Arthur Elgort s Models Manual 1990'], 'Giorno Giovanna'],
-            [['Vogue Italia Philosophy di Alberta Ferretti February 2000', 'Vogue Italia May 1998'], 'Jolyne Kujo'],
-            [['Nina Ricci Haute Couture, 1984', 'Blade Runner June 25, 1982'], 'Dio Brando'],
-            [['Gucci Fall/Winter 2009 (Advertisement)', 'Vogue Italia November 1988'], 'Jonnhy Joestar'],
-            [['Versace Spring/Summer 2003', 'Transworld Surf[14] June 2004'], 'Gyro Zeppeli'],
-            [['Gianni Versace Men s Catalog Winter 1994-1995 (Advertisement)', 'Top Model France TBA 1995'], 'Yoshikage Kira'],
+            [['Adam 1880-1881', 'Studies of Teri Toye Body Conscious New York, 1963'], 'Jonathan Joestar', ['Phantom Blood']], 
+            [['The Picasso of Fashion Illustration', 'California Dreamer Paris 1986'], 'Kars', ['Battle Tendancy']],
+            [['TBA 1980', 'Yves Saint Laurent Haute Couture Paris, 1984'], 'Joseph Joestar', ['Battle Tendancy', 'Stardust Crusaders']],
+            [['Dirty Harry', 'Vogue US January 2000',], 'Jotaro Kujo', ['Stardust Crusaders', 'Diamond is Unbreakable', 'Stone Ocean']],
+            [['Gianni Versace Fall/Winter 1984', 'Gianni Versace Men Without Ties TBA 1994'], 'Josuke Higashikata', ['Diamond is Unbreakable']],
+            [['Gianni Versace Spring/Summer 1997', 'Arthur Elgort s Models Manual 1990'], 'Giorno Giovanna', ['Golden Wind']],
+            [['Vogue Italia Philosophy di Alberta Ferretti February 2000', 'Vogue Italia May 1998'], 'Jolyne Kujo', ['Stone Ocean']],
+            [['Nina Ricci Haute Couture, 1984', 'Blade Runner June 25, 1982'], 'Dio Brando', ['Phantom Blood', 'Stardust Crusaders', 'Stone Ocean']],
+            [['Gucci Fall/Winter 2009 (Advertisement)', 'Vogue Italia November 1988'], 'Jonnhy Joestar', ['Steel Ball Run']],
+            [['Versace Spring/Summer 2003', 'Transworld Surf[14] June 2004'], 'Gyro Zeppeli', ['Steel Ball Run']],
+            [['Gianni Versace Men s Catalog Winter 1994-1995 (Advertisement)', 'Top Model France TBA 1995'], 'Yoshikage Kira', ['Diamond is Unbreakable']],
         ];
 
         foreach ($poses as $key => $allPose) {   
@@ -32,6 +32,9 @@ class PosesFixture extends Fixture implements DependentFixtureInterface
                 $pose = new Poses();   
                 $pose->setName($allPose2);
                 $pose->setPersonnages(($this->getReference(PersonnageFixture::PERSONNAGE_REFERENCE . $allPose[1]))); 
+                foreach ($allPose[2] as $key => $allPose3) {
+                    $pose->addSaison(($this->getReference(SaisonFixture::SAISON_REFERENCE . $allPose3)));
+                }
                 $manager->persist($pose);
             }
             $manager->flush();

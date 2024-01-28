@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PointsFortController!{% endblock %}
+
+{% block body %}
+<a href="{{ path('app_points_fort_creation') }}">{% trans %} Add.your.strength {% endtrans %}</a>
+<div style="display: flex; justify-content: space-between; flex-direction: column">
+{% for ptsFort in ptsFort %}
+<text style="font-weight:bold"> Point fort : </text>
+<text>{{ptsFort.name}}</text>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_points_fort_detail', {'id': ptsFort.id}) }}">Modifier </a>
+        <a href="{{ path('app_points_fort_supprimer', {'id': ptsFort.id}) }}"> Supprimer</a>
+    {% endif %}
+{% endfor %}
+
+</div>
+{% endblock %}

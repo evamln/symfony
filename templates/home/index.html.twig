@@ -3,18 +3,51 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+ {% if app.user %}
+            <div class="mb-3">
+                {% trans %}You.are.logged.in.as{% endtrans %} {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">{% trans %}Logout{% endtrans %}</a>
+            </div>
+        {% endif %}
+<text style="font-weight: bold">{% trans %}Number.of.characters.dead{% endtrans %}</text>      
+<text>{{mort}}</text><br> 
+<text>{% trans %}equal {% endtrans %}</text>
+<text>{{(mort*100/(mort+vivant+inconnu)) | number_format(0)}}%</text><br>
+<text style="font-weight: bold">{% trans %}Number.of.characters.living{% endtrans %}</text>  
+<text>{{vivant}}</text><br> 
+<text>{% trans %}equal {% endtrans %}</text>
+<text>{{(vivant*100/(mort+vivant+inconnu)) | number_format(0)}}%</text><br>
+<text style="font-weight: bold">{% trans %}Number.of.characters.unknow{% endtrans %}</text> 
+<text>{{inconnu}}</text><br> 
+<text>{% trans %}equal {% endtrans %}</text>
+<text>{{(inconnu*100/(mort+vivant+inconnu)) | number_format(0)}}%</text><br>
 
-<div class="example-wrapper">
-<a href="{{ path('app_home') }}"> Accueil </a>
-<a href="{{ path('app_saison') }}"> Saison </a>
-<a href="{{ path('app_personnages') }}"> Personnages </a>
-<a href="{{ path('app_pose') }}"> Pose </a>
-<a href="{{ path('app_stand') }}"> Stand </a>
-<a href="{{ path('app_statut') }}"> Statut </a>
-   
+<text> {% trans %}Last.characters{% endtrans %}</text><br>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between" >
+{% for personnage in lastPersonnages %}
+<div style="display: flex; flex-direction: column">
+    <text style="font-weight : bold">{{personnage.name}}</text>
+    <img src = {{personnage.image}} width ='200' ></img>
+
+    {% if personnage.stand != null %}
+                <h3> Stand :</h3>
+                <text> {{personnage.stand.name}}</text>
+            {% endif %}
+            {% if personnage.statut != null %}
+                <h3>Statut :</h3>
+                <text>{{personnage.statut.name}}</text>
+            {% endif %}
+                <h3>{%trans %}Saison {%endtrans%}</h3>
+            {% for saisons in personnage.saisons %}
+                <text>{{saisons.name}}</text>
+            {% endfor %}
+            <h3>Poses : </h3>
+            {% for poses in personnage.Poses %}
+                <text style="width:200px">{{poses.name}}</text><br>
+            {% endfor %}
+            <h3>Etat : </h3>
+            <text>{{personnage.enumType.value}}</text><br>
+</div>
+
+{% endfor %}
 </div>
 {% endblock %}

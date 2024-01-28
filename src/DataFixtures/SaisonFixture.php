@@ -18,7 +18,7 @@ class SaisonFixture extends Fixture
         ['Stardust Crusaders','https://upload.wikimedia.org/wikipedia/en/7/75/JoJo_Part_3_Stardust_Crusaders.jpg'],
         ['Diamond is Unbreakable','https://fr.web.img6.acsta.net/pictures/20/02/25/17/01/3137046.jpg'],
         ['Golden Wind','https://upload.wikimedia.org/wikipedia/en/6/66/JoJo_Part_5_Golden_Wind.jpg'],
-        ['Stone Ocean','https://static.wikia.nocookie.net/jjba/images/0/0f/Jojo_Final_KV.jpeg/revision/latest?cb=20221024044932'],
+        ['Stone Ocean','https://static.wikia.nocookie.net/jjba/images/0/0f/Jojo_Final_KV.jpeg'],
         ['Steel Ball Run','https://www.bedetheque.com/media/Couvertures/Couv_223891.jpg'],
         ['Jojolion','https://www.manga-news.com/public/images/series/jojolion-1-delcourt.jpg'],
         ['Jojoland','https://jdworld.org/wp-content/uploads/2023/09/1200px-Volume_132.jpg'],

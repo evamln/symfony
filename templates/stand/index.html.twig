@@ -3,24 +3,26 @@
 {% block title %}Hello StandController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-<a href="{{ path('app_home') }}"> Accueil </a>
-<a href="{{ path('app_saison') }}"> Saison </a>
-<a href="{{ path('app_personnages') }}"> Personnages </a>
-<a href="{{ path('app_pose') }}"> Pose </a>
-<a href="{{ path('app_stand') }}"> Stand </a>
-<a href="{{ path('app_statut') }}"> Statut </a>
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div>
+<a href="{{ path('app_stand_creation') }}">{% trans %} Add.your.stand {% endtrans %}</a>
+   {% for stand in stand %}
+    <h1> {{stand.name}}</h1>
+    <h2> Pouvoirs : </h2>
+    {% for standPouvoirs in stand.pouvoirs %}
+    <text> {{standPouvoirs.name}} </text><br>
+    {%endfor%}
+    <h2> Points Fort : </h2>
+    {%for standPtsFort in stand.pointsFort %}
+    <text> {{standPtsFort.name}} </text><br>
+    {%endfor%}
+    {% if is_granted('ROLE_ADMIN') %}
+      <a href="{{ path('app_stand_detail', {'id': stand.id}) }}">Modifier</a>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/projet/symfony_base/src/Controller/StandController.php'|file_link(0) }}">src/Controller/StandController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/projet/symfony_base/templates/stand/index.html.twig'|file_link(0) }}">templates/stand/index.html.twig</a></code></li>
-    </ul>
+      <a href="{{ path('app_stand_supprimer', {'id': stand.id}) }}">Supprimer</a>
+   {% endif %}
+   {% endfor %}
+   
+</div>   
 </div>
 {% endblock %}
