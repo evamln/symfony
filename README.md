@@ -8,7 +8,7 @@ Afin de pouvoir accéder à toutes les fonctionnalités il faut supprimer le ';'
 
 Pour lancer l'application il faut lancer le panel xampp et démarrer Apache et MySQL.
 
-Une fois xampp lancé il faut aller sur ce lien : http://localhost/symfony_base/public/fr/home
+Une fois xampp lancé il faut aller sur ce lien : http://localhost/symfony/public/fr/home
 (fr pour avoir les pages en français et en pour les avoirs en anglais)
 Si le projet est dans un dossier suplémentaire et pas uniquement dans le htdocs il faudra le rajouter entre localhost et symfony_base
 
